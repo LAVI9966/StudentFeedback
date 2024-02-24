@@ -16,12 +16,12 @@ const CourseRating = ({ id, handleratings }) => {
       <Rating
         name="simple-controlled"
         value={value}
-        onClick={(event) => {
-          handleratings(event, id);
-        }}
         onChange={(event, newValue) => {
           setValue(newValue);
-          console.log(newValue);
+          // console.log(newValue);
+        }}
+        onClick={(event) => {
+          handleratings(event, id);
         }}
       />
     </Box>

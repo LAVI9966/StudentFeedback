@@ -4,17 +4,10 @@ import bcryptjs from "bcryptjs"
 import cors from 'cors'
 import jwt from 'jsonwebtoken'
 import authenticate from '../middleware/authenticate.js'
-
+import { CourseRatings } from "../models/Corserating.js";
 const router = express.Router();
 router.use(express.json());
 router.use(cors());
-// "usertype": "student",
-// "firstname": "John",
-// "lastname": "Doe",
-// "semester": 2,
-// "email": "josssasdasdasshn.doe@example.com",
-// "password": "password123",
-
 
 router.post('/signin', async (req,res)=>{
   const {usertype , firstname , lastname , semester , email,password,cpassword} = req.body;
@@ -76,7 +69,15 @@ router.post('/login',async (req,res)=>{
     }
 })
 
-router.get('/welcome',authenticate,(req,res)=>{
-  res.send('hellow0');
+router.post('/courserate',async(req,res)=>{
+  const { courseratingarr,
+    code} = req.body;
+   
+    try {
+      const ratings = new CourseRatings({code,rating:courseratingarr})
+      const storrat = await ratings.save();
+    } catch (error) {
+      console.log(error)
+    }
 })
 export default router;

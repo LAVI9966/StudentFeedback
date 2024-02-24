@@ -1,32 +1,52 @@
 import React, { useState } from "react";
 import CourseRating from "./CourseRating";
+import { useParams } from "react-router-dom";
+import axios from "axios";
 
 const Courserate = () => {
+  const { code } = useParams();
   const [courseratingarr, setcourseratingarr] = useState([
-    { id: "1", rating: 0 },
-    { id: "2", rating: 0 },
-    { id: "3", rating: 0 },
-    { id: "4", rating: 0 },
-    { id: "5", rating: 0 },
+    { id: 1, rating: 0 },
+    { id: 2, rating: 0 },
+    { id: 3, rating: 0 },
+    { id: 4, rating: 0 },
+    { id: 5, rating: 0 },
   ]);
+
   const handleratings = (event, cid) => {
-    // console.log(event.target.value);
-    // console.log("Id is ", cid);
     const newratings = courseratingarr.map((item) => {
-      if (item.id === cid) {
-        item.rating = event.target.value;
+      if (cid === item.id) {
+        return { ...item, rating: event.target.value };
       }
+      return item;
     });
     setcourseratingarr(newratings);
+    console.log("course code is ", code);
     console.log(newratings);
+  };
+  const sendRating = async () => {
+    try {
+      const response = await axios.post("http://localhost:8080/courserate", {
+        courseratingarr,
+        code,
+      });
+      console.log(response.data);
+    } catch (error) {
+      console.log(error);
+    }
   };
   return (
     <>
-      <CourseRating id="1" handleratings={handleratings}></CourseRating>;
-      <CourseRating id="2" handleratings={handleratings}></CourseRating>;
-      <CourseRating id="3" handleratings={handleratings}></CourseRating>;
-      <CourseRating id="4" handleratings={handleratings}></CourseRating>;
-      <CourseRating id="5" handleratings={handleratings}></CourseRating>;
+      {courseratingarr.map((course) => (
+        <CourseRating
+          key={course.id}
+          id={course.id}
+          handleratings={handleratings}
+        />
+      ))}
+      <button onClick={sendRating} className="btn btn-primary">
+        Submit
+      </button>
     </>
   );
 };

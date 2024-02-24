@@ -11,3 +11,5 @@ const courserating = mongoose.Schema({
   }
   ]
 })
+
+export const CourseRatings =mongoose.model('Courserating',courserating);

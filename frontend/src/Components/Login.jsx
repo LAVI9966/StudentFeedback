@@ -23,10 +23,10 @@ const Login = () => {
         formData
       );
       const user = response.data.usertype;
-      if (user == "student") {
-        navigation("/courselist");
-      } else {
+      if (user == "admin") {
         navigation("/admin");
+      } else {
+        navigation("/courselist");
       }
       console.log("Responce", response);
     } catch (error) {
