@@ -2,6 +2,8 @@ import express from "express";
 import { User } from '../models/User.js'
 import bcryptjs from "bcryptjs"
 import cors from 'cors'
+import jwt from 'jsonwebtoken'
+import authenticate from '../middleware/authenticate.js'
 
 const router = express.Router();
 router.use(express.json());
@@ -34,7 +36,7 @@ router.post('/signin', async (req,res)=>{
 
         const registeruser = await user.save();
         if(registeruser){
-          res.status(201).json({message:"User registered successfully"});
+          res.status(200).json({message:"User registered successfully"});
         }else{
           res.status(500).json({message:'Failed to register'})
         }
@@ -49,20 +51,32 @@ router.post('/login',async (req,res)=>{
       return res.status(422).send('Invalid Credentials')
     }
     try {
+      let token;
       const finduser = await User.findOne({email:email});
 
       if(!finduser){
-        res.status(201).json({message:"Invalid Credentials email not availble"})
+        res.status(200).json({message:"Invalid Credentials email not availble"})
       }else{
+        token =await finduser.generateAuthToken();
+
+        res.cookie('jwtoken',token,{
+          expires:new Date(Date.now()+25892000000),
+          httpOnly:true
+        })
+
         const ismatch = await bcryptjs.compare(password,finduser.password);
         if(ismatch){
-          res.status(201).send('Congrats you in');
+          res.status(200).send('Congrats you in');
         }else{
-          res.status(201).json({message:"Invalid credentials"})
+          res.status(200).json({message:"Invalid credentials"})
         }
       }
     } catch (error) {
       console.log(error)
     }
+})
+
+router.get('/welcome',authenticate,(req,res)=>{
+  res.send('hellow0');
 })
 export default router;

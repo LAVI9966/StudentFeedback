@@ -1,0 +1,16 @@
+.maindisplay{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+.innerdivad{
+  flex-direction: column;
+}
+.h111{
+  font-size: 50px;
+  margin: 10px;
+}
+.btn{
+  margin: 10px;
+}
