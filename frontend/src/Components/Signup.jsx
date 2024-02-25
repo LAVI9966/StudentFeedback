@@ -26,7 +26,7 @@ const Signup = () => {
     console.log(formData);
     try {
       const responce = await axios.post(
-        "http://localhost:8080/signin",
+        "http://localhost:8080/signup",
         formData,
         {
           headers: {

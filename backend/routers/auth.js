@@ -9,7 +9,7 @@ const router = express.Router();
 router.use(express.json());
 router.use(cors());
 
-router.post('/signin', async (req,res)=>{
+router.post('/signup', async (req,res)=>{
   const {usertype , firstname , lastname , semester , email,password,cpassword} = req.body;
 
     if(!usertype || !firstname || !lastname || !semester || !email || !password || !cpassword){
@@ -59,7 +59,7 @@ router.post('/login',async (req,res)=>{
 
         const ismatch = await bcryptjs.compare(password,finduser.password);
         if(ismatch){
-          res.status(200).send('Congrats you in');
+         return res.status(200).send(finduser);
         }else{
           res.status(200).json({message:"Invalid credentials"})
         }
@@ -75,8 +75,10 @@ router.post('/courserate',async(req,res)=>{
    
     try {
       const ratings = new CourseRatings({code,rating:courseratingarr})
-      const storrat = await ratings.save();
-    } catch (error) {
+      await ratings.save();
+      res.status(200).send('Rating submitted');        
+      } catch (error) {
+      res.status(500).send('Error occured');
       console.log(error)
     }
 })

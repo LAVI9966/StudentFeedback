@@ -23,7 +23,7 @@ const Login = () => {
         formData
       );
       const user = response.data.usertype;
-      if (user == "admin") {
+      if (user === "admin") {
         navigation("/admin");
       } else {
         navigation("/courselist");
