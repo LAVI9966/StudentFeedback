@@ -9,7 +9,7 @@ import Welcome from "./Components/Welcome.jsx";
 import Courselist from "./Components/Course/Courselist.jsx";
 import ListFaculty from "./Components/Faculty/ListFaculty.jsx";
 import AdminHome from "./Components/Admin/AdminHome.jsx";
-import MangageFaculty from "./Components/Faculty/MangageFaculty.jsx";
+import MangageFaculty from "./Components/Admin/MangageFaculty.jsx";
 import Feedback from "./Components/Feedback/Feedback.jsx";
 import Facultyfeedback from "./Components/Feedback/Facultyfeedback.jsx";
 import CourseFeedback from "./Components/Feedback/CourseFeedback.jsx";

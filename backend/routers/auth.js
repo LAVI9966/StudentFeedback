@@ -8,7 +8,7 @@ import { CourseRatings } from "../models/Corserating.js";
 const router = express.Router();
 router.use(express.json());
 router.use(cors());
-
+ 
 router.post('/signup', async (req,res)=>{
   const {usertype , firstname , lastname , semester , email,password,cpassword} = req.body;
 
@@ -69,17 +69,5 @@ router.post('/login',async (req,res)=>{
     }
 })
 
-router.post('/courserate',async(req,res)=>{
-  const { courseratingarr,
-    code} = req.body;
-   
-    try {
-      const ratings = new CourseRatings({code,rating:courseratingarr})
-      await ratings.save();
-      res.status(200).send('Rating submitted');        
-      } catch (error) {
-      res.status(500).send('Error occured');
-      console.log(error)
-    }
-})
+
 export default router;
