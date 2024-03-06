@@ -1,7 +1,7 @@
 import React from "react";
 
 const CourseFeedback = () => {
-  return <div>CourseFeddback Redner here fo all user same</div>;
+  return <>CourseFeddback Redner here fo all user same</>;
 };
 
 export default CourseFeedback;

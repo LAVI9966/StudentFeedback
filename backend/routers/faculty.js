@@ -32,4 +32,14 @@ router.get('/fetchfaculty',async(req,res)=>{
   }
 })
 
+router.delete('/deletefaculty/:id',async(req,res)=>{
+  try {
+    const deletedata = await Faculty.findByIdAndDelete(req.params.id);
+    res.status(200).send("DELETED");
+  } catch (error) {
+    console.log(error)
+    res.status(500).send(e);
+  }
+})
+
 export default router;
