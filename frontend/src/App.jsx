@@ -9,11 +9,12 @@ import Home from "./Components/Home";
 function App() {
   return (
     <>
-      <div className="Maincontainer">
-        <Navbar></Navbar>
-        <Home></Home>
-
-        <Footer></Footer>
+      <div className="home">
+        <Navbar />
+        <div className="content">
+          <Home></Home>
+        </div>
+        <Footer />
       </div>
     </>
   );

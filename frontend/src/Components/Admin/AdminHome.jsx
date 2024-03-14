@@ -20,6 +20,9 @@ const AdminHome = () => {
               <Link to="/managefaculty">
                 <button className="btn btn-success">Manage Faculty</button>
               </Link>
+              <Link to="/addcourse">
+                <button className="btn btn-success">Add Course</button>
+              </Link>
             </div>
             <div>
               <Link to="/change-password">

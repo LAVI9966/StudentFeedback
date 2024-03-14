@@ -15,6 +15,7 @@ import Facultyfeedback from "./Components/Feedback/Facultyfeedback.jsx";
 import CourseFeedback from "./Components/Feedback/CourseFeedback.jsx";
 import Courserate from "./Components/Rating/Courserate.jsx";
 import Facultyrate from "./Components/Rating/Facultyrate.jsx";
+import Addcourse from "./Components/Admin/Addcourse.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
@@ -63,6 +64,10 @@ const router = createBrowserRouter([
   {
     path: "/feedbacks/facultyfeedback",
     element: <Facultyfeedback></Facultyfeedback>,
+  },
+  {
+    path: "/addcourse",
+    element: <Addcourse></Addcourse>,
   },
 ]);
 
