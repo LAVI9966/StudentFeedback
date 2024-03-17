@@ -38,11 +38,11 @@ const router = createBrowserRouter([
     element: <ListFaculty></ListFaculty>,
   },
   {
-    path: "/facultyrate",
+    path: "/facultyrate/:fc",
     element: <Facultyrate></Facultyrate>,
   },
   {
-    path: "/courserate/:code",
+    path: "/courserate/:cd",
     element: <Courserate></Courserate>,
   },
   {

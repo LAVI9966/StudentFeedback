@@ -1,7 +1,23 @@
 import express from 'express'
 import { Faculty} from '../models/faculty.js';
-
+import { FacultyRatings } from '../models/Facultyrating.js';
 const router = express.Router();
+
+router.post('/facultyrate',async(req,res)=>{
+  const { courseratingarr,
+    fdata} = req.body; 
+   const { empid ,name} = fdata;
+    try {
+      const ratings = new FacultyRatings({empid,name,rating:courseratingarr})
+      await ratings.save();
+      res.status(200).send('Rating submitted'); 
+      console.log("submitted")       
+      } catch (error) {
+      res.status(500).send('Error occured');
+      console.log(error)
+    }
+})
+
 
 router.post('/addfaculty',async(req,res)=>{
   const {username,fullname,fid,department,email,password} = req.body;

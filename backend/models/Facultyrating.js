@@ -4,7 +4,7 @@ const Facultyrating = mongoose.Schema({
     type:String,
     required:true
   },
-  code:{
+  empid:{
     type:String,
     required:true
   },

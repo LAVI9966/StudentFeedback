@@ -1,13 +1,19 @@
 import React from "react";
 import { useState } from "react";
+import axios from "axios";
 
 const Addcourse = () => {
   const [coursedata, setcoursedata] = useState({
     coursename: "",
     coursecode: "",
   });
-  const handleformdata = (e) => {
+  const handleformdata = async (e) => {
     e.preventDefault();
+    const respose = await axios.post(
+      "http://localhost:8080/addcourse",
+      coursedata
+    );
+    console.log(respose);
     console.log("helo");
   };
 

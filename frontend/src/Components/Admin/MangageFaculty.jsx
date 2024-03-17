@@ -27,6 +27,9 @@ const MangageFaculty = () => {
       console.log(error);
     }
   };
+  const fun = (fetch) => {
+    fetch();
+  };
   const handleformdata = (e) => {
     console.log(e.target.value);
     const { name, value } = e.target;
@@ -83,7 +86,7 @@ const MangageFaculty = () => {
           Add faculty
         </button>
       </form>
-      <Facultydetail></Facultydetail>
+      <Facultydetail fun={fun}></Facultydetail>
     </>
   );
 };

@@ -6,9 +6,10 @@ import Navbar from "./Components/Navbar";
 import "bootstrap/dist/css/bootstrap.css";
 import Footer from "./Components/Footer";
 import Home from "./Components/Home";
+import { FacultyProvider } from "./Components/Admin/Facultycontex";
 function App() {
   return (
-    <>
+    <FacultyProvider>
       <div className="home">
         <Navbar />
         <div className="content">
@@ -16,7 +17,7 @@ function App() {
         </div>
         <Footer />
       </div>
-    </>
+    </FacultyProvider>
   );
 }
 

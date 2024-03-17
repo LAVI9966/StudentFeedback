@@ -1,12 +1,12 @@
 import mongoose, { mongo } from 'mongoose'
 const courses = new mongoose.Schema({
-  name:{
+  coursename:{
     type:String,
     required:true
   },
-  code:{
+  coursecode:{
     type:String,
     required:true
   }
 })
-export const Course = new mongoose.model('Course',courses);
+export const Courss = new mongoose.model('Course',courses);

@@ -4,14 +4,17 @@ import { useParams } from "react-router-dom";
 import axios from "axios";
 
 const Courserate = () => {
-  const { code } = useParams();
-  const [courseratingarr, setcourseratingarr] = useState([
+  const { cd } = useParams();
+  const cdata = JSON.parse(cd);
+
+  const intialvalue = [
     { id: 1, rating: 0 },
     { id: 2, rating: 0 },
     { id: 3, rating: 0 },
     { id: 4, rating: 0 },
     { id: 5, rating: 0 },
-  ]);
+  ];
+  const [courseratingarr, setcourseratingarr] = useState(intialvalue);
 
   const handleratings = (event, cid) => {
     const newratings = courseratingarr.map((item) => {
@@ -21,16 +24,18 @@ const Courserate = () => {
       return item;
     });
     setcourseratingarr(newratings);
-    console.log("course code is ", code);
+    console.log("course code is ", cdata.code);
     console.log(newratings);
   };
   const sendRating = async () => {
     try {
       const response = await axios.post("http://localhost:8080/courserate", {
         courseratingarr,
-        code,
+        cdata,
       });
       console.log(response.data);
+      // window.location.reload();
+      setcourseratingarr(intialvalue);
     } catch (error) {
       console.log(error);
     }
