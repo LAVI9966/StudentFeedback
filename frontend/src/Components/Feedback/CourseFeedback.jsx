@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import CourseFeedbackCard from "./CourseFeedbackCard";
 
 const CourseFeedback = () => {
   const [data, setdata] = useState(null);
@@ -43,8 +44,32 @@ const CourseFeedback = () => {
     );
   });
   result = Object.values(result);
-  console.log(result);
-  return <>CourseFeddback Redner here fo all user same</>;
+  console.log("Result array ", result);
+  const finalratings = [];
+  result.map((item) => {
+    const rating = (item.ratingigot / item.totalratings) * 5;
+    const d = {
+      name: item.name,
+      calcurat: rating,
+    };
+    finalratings.push(d);
+    console.log(
+      `The course name is ${item.name} and the final rating is ${rating}`
+    );
+  });
+  console.log(finalratings);
+  return (
+    <>
+      {finalratings.map((item) => {
+        return (
+          <CourseFeedbackCard
+            name={item.name}
+            rating={item.calcurat}
+          ></CourseFeedbackCard>
+        );
+      })}
+    </>
+  );
 };
 
 export default CourseFeedback;

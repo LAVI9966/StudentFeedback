@@ -10,9 +10,9 @@ import { FacultyProvider } from "./Components/Admin/Facultycontex";
 function App() {
   return (
     <FacultyProvider>
-      <div className="home">
+      <div>
         <Navbar />
-        <div className="content">
+        <div>
           <Home></Home>
         </div>
         <Footer />
