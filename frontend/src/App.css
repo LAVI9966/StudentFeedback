@@ -1,7 +1,8 @@
 /* styles.css */
-body {
+body{
   margin: 0;
   padding: 0;
+  background-color: aqua;
   font-family: Arial, sans-serif;
   display: flex;
   flex-direction: column;
@@ -10,4 +11,14 @@ body {
 .myfooter{
   margin-top: auto;
   text-align: center;
+}
+
+/* --------------------------------------------iske upper ki kam ni kar rahi -------------------- */
+
+.courselistcard{
+  display: flex;
+  width: 100%;
+  padding-top:20px ;
+  align-items: center;
+  justify-content: center;
 }

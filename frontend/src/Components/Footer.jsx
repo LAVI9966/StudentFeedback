@@ -4,38 +4,42 @@ import { FaTwitter } from "react-icons/fa";
 import { CiFacebook } from "react-icons/ci";
 const Footer = () => {
   return (
-    <footer class="bg-black rounded-lg shadow m-4 dark:bg-gray-800   myfooter">
-      <div class="w-full mx-auto max-w-screen-xl p-4 md:flex md:items-center md:justify-between">
-        <span class="text-sm text-gray-500 sm:text-center dark:text-gray-400">
-          © 2023{" "}
-          <a href="https://flowbite.com/" class="hover:underline">
-            Flowbite™
-          </a>
-          . All Rights Reserved.
-        </span>
-        <ul class="flex flex-wrap items-center mt-3 text-sm font-medium text-gray-500 dark:text-gray-400 sm:mt-0">
-          <li>
-            <a href="#" class="hover:underline me-4 md:me-6">
-              About
-            </a>
-          </li>
-          <li>
-            <a href="#" class="hover:underline me-4 md:me-6">
-              Privacy Policy
-            </a>
-          </li>
-          <li>
-            <a href="#" class="hover:underline me-4 md:me-6">
-              Licensing
-            </a>
-          </li>
-          <li>
-            <a href="#" class="hover:underline">
-              Contact
-            </a>
-          </li>
-        </ul>
+    <footer class="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top text-white bg-dark myfooter">
+      <div class="col-md-4 d-flex align-items-center">
+        <a
+          href="/"
+          class="mb-3 me-2 mb-md-0 text-white bg-dark text-decoration-none lh-1"
+        >
+          <svg class="bi" width="30" height="24">
+            <use xlink:href="#bootstrap"></use>
+          </svg>
+        </a>
+        <span class="mb-3 mb-md-0 text-white bg-dark">© 2024 Company, Inc</span>
       </div>
+
+      <ul class="nav col-md-4 justify-content-end list-unstyled d-flex">
+        <li class="ms-3">
+          <a class="text-white bg-dark" href="#">
+            <svg class="bi" width="24" height="24">
+              <use xlink:href="#twitter"></use>
+            </svg>
+          </a>
+        </li>
+        <li class="ms-3">
+          <a class="text-white bg-dark" href="#">
+            <svg class="bi" width="24" height="24">
+              <use xlink:href="#instagram"></use>
+            </svg>
+          </a>
+        </li>
+        <li class="ms-3">
+          <a class="text-white bg-dark" href="#">
+            <svg class="bi" width="24" height="24">
+              <use xlink:href="#facebook"></use>
+            </svg>
+          </a>
+        </li>
+      </ul>
     </footer>
   );
 };
