@@ -13,13 +13,17 @@ const CourseFeedback = () => {
           "http://localhost:8080/fetchcourseratings"
         );
         setdata(response.data);
+        // const response = fetch("http://localhost:8080/fetchcourseratings")
+        //   .then((res) => res.json())
+        //   .then((obj) => setdata(obj));
       } catch (error) {
         console.log(error);
       }
     };
     fetchData();
   }, []);
-  console.log(data);
+  console.log("This is data aprt ", data);
+  console.log("This is subject part ", subjects);
   useEffect(() => {
     if (data) {
       const newSubjects = data.map((item) => ({
@@ -65,6 +69,7 @@ const CourseFeedback = () => {
           <CourseFeedbackCard
             name={item.name}
             rating={item.calcurat}
+            result={result}
           ></CourseFeedbackCard>
         );
       })}

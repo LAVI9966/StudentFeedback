@@ -8,6 +8,7 @@ const Login = () => {
   const [formData, setformData] = useState({
     email: "",
     password: "",
+    usertype: "student",
   });
   const navigation = useNavigate();
   const [errormsg, seterrorMsg] = useState("");
@@ -18,21 +19,56 @@ const Login = () => {
   };
   const handlesubmit = async (e) => {
     e.preventDefault();
-    try {
-      const response = await axios.post(
-        "http://localhost:8080/login",
-        formData
-      );
-      const user = response.data.usertype;
-      if (user === "admin") {
-        navigation("/admin");
-      } else {
-        navigation("/courselist");
+    if (formData.usertype == "student") {
+      try {
+        const response = await axios.post(
+          "http://localhost:8080/login",
+          formData
+        );
+        const user = response.data.usertype;
+        if (user === "admin") {
+          seterrorMsg("Invalid Credentials");
+        }
+        if (user === "student") {
+          navigation("/courselist");
+        }
+        console.log("Responce", response);
+      } catch (error) {
+        console.log(error);
+        seterrorMsg("Invalid Credentials");
       }
-      console.log("Responce", response);
-    } catch (error) {
-      console.log(error);
-      seterrorMsg("Invalid Credentials");
+    } else if (formData.usertype === "faculty") {
+      try {
+        const response = await axios.post(
+          "http://localhost:8080/loginfaculty",
+          formData
+        );
+        console.log(response);
+        if (response.data.message === "Done") {
+          navigation("/facultyhome");
+        }
+      } catch (error) {
+        console.log(error);
+      }
+    } else {
+      try {
+        const response = await axios.post(
+          "http://localhost:8080/login",
+          formData
+        );
+        const user = response.data.usertype;
+        if (user === "student") {
+          seterrorMsg("Invalid Credentials");
+        }
+        if (user === "admin") {
+          navigation("/admin");
+        }
+
+        console.log("Responce", response);
+      } catch (error) {
+        console.log(error);
+        seterrorMsg("Invalid Credentials");
+      }
     }
   };
   return (
@@ -44,8 +80,16 @@ const Login = () => {
       {errormsg && <div>{errormsg}</div>}
 
       <form onSubmit={handlesubmit} class="max-w-sm mx-auto">
-        zz
         <div class="mb-5">
+          <select
+            name="usertype"
+            value={formData.usertype}
+            onChange={handlechange}
+          >
+            <option value="student">Student</option>
+            <option value="faculty">Faculty</option>
+            <option value="admin">Admin</option>
+          </select>
           <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-black">
             Your email
           </label>

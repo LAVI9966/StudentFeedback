@@ -3,12 +3,43 @@ import { Faculty} from '../models/faculty.js';
 import { FacultyRatings } from '../models/Facultyrating.js';
 const router = express.Router();
 
+router.post('/loginfaculty',async(req,res)=>{
+  const {email,password} = req.body;
+  console.log(email,password)
+  if(!email || !password){
+    return res.status(401).send('Invalid Credentials')
+  }
+  try {
+    const user = await Faculty.findOne({email:email});
+    if(!user){
+      res.status(200).send({message:"Faculty not found"})
+    }else{
+      if(password!==user.password){
+        res.status(200).send({message:'Wrong password'})
+      }else{
+        res.status(200).send({message:'Done'})
+      }
+    }
+  } catch (error) {
+    console.log(error)
+  } 
+})
+router.get('/fetchfaculty',async(req,res)=>{
+  try {
+    const response = await Faculty.find();
+    res.status(200).send(response);
+  } catch (error) {
+    console.log(error)
+    res.status(401).send({message:'Error hai bhai '})
+  }
+})
 router.post('/facultyrate',async(req,res)=>{
-  const { courseratingarr,
+  const { facultyratingarr,
     fdata} = req.body; 
    const { empid ,name} = fdata;
     try {
-      const ratings = new FacultyRatings({empid,name,rating:courseratingarr})
+      console.log(facultyratingarr)
+      const ratings = new FacultyRatings({empid,name,rating:facultyratingarr})
       await ratings.save();
       res.status(200).send('Rating submitted'); 
       console.log("submitted")       
@@ -17,7 +48,16 @@ router.post('/facultyrate',async(req,res)=>{
       console.log(error)
     }
 })
-
+ 
+router.get('/fetchfacultyratings',async(req,res)=>{
+  try {
+    const fetchedratings =await FacultyRatings.find();
+    res.status(200).send(fetchedratings);
+  } catch (error) {
+    console.log(error);
+    res.status(500).send(error);
+  }
+})
 
 router.post('/addfaculty',async(req,res)=>{
   const {username,fullname,fid,department,email,password} = req.body;

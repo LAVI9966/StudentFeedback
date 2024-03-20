@@ -26,20 +26,51 @@ const Facultyrate = () => {
     // console.log(newratings);
   };
   const sendRating = async () => {
-    const response = await axios.post("http://localhost:8080/facultyrate", {
-      facultyratingarr,
-      fdata,
-    });
-    console.log(response.data);
-    // window.location.reload();
-    setfacultyratingarr(intialvalue);
+    console.log(facultyratingarr);
+    try {
+      const response = await axios.post("http://localhost:8080/facultyrate", {
+        facultyratingarr,
+        fdata,
+      });
+      console.log(response.data);
+      // window.location.reload();
+      setfacultyratingarr(intialvalue);
+    } catch (error) {
+      console.log(error);
+    }
   };
+  const ratecon = [
+    {
+      heading: "Teaching Methods",
+      description:
+        "Did the teacher effectively use a variety of teaching methods and strategies ?",
+    },
+    {
+      heading: "Clarity and Communication",
+      description:
+        "Was the teacher's communication clear and easy to understand?",
+    },
+    {
+      heading: "Availability and Responsiveness",
+      description:
+        "Did the teacher make themselves available for questions and support ?",
+    },
+    {
+      heading: "Knowledge and Expertise",
+      description: "Did the teacher demonstrate",
+    },
+    {
+      heading: "Demo 5",
+      description: "Demo Description 5",
+    },
+  ];
   return (
     <>
-      {facultyratingarr.map((faculty) => (
+      {facultyratingarr.map((faculty, i) => (
         <FacultyRating
           key={faculty.id}
           id={faculty.id}
+          content={ratecon[i]}
           handleratings={handleratings}
         />
       ))}

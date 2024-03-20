@@ -1,16 +1,30 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Course from "./Course.jsx";
-import coursedata from "./coursedata.js";
 import Navbar from "../Navbar.jsx";
 import Footer from "../Footer.jsx";
+import axios from "axios";
 const Courselist = () => {
+  const [coursedata, setcoursedata] = useState([]);
+  useEffect(() => {
+    const fetchcourse = async () => {
+      const response = await axios.get("http://localhost:8080/fetchcourse");
+      console.log(response.data);
+      setcoursedata(response.data);
+    };
+    fetchcourse();
+  }, []);
+  console.log(coursedata);
   return (
     <>
       <Navbar></Navbar>
       {coursedata.map((cou) => {
         return (
           <div className="courselistcard">
-            <Course key={cou.code} name={cou.name} code={cou.code} />
+            <Course
+              key={cou.coursecode}
+              name={cou.coursename}
+              code={cou.coursecode}
+            />
           </div>
         );
       })}

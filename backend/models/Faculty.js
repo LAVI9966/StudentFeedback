@@ -15,7 +15,7 @@ const Facultyschema =new mongoose.Schema({
   },
   department:{
     type:String,
-    required:true
+    required:true 
   },
   email:{
     type:String,

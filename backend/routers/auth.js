@@ -48,7 +48,7 @@ router.post('/login',async (req,res)=>{
       const finduser = await User.findOne({email:email});
 
       if(!finduser){
-        res.status(200).json({message:"Invalid Credentials email not availble"})
+        res.status(401).json({message:"Invalid Credentials email not availble"})
       }else{
         token =await finduser.generateAuthToken();
 
@@ -56,12 +56,12 @@ router.post('/login',async (req,res)=>{
           expires:new Date(Date.now()+25892000000),
           httpOnly:true
         })
-
+        console.log(finduser.password)
         const ismatch = await bcryptjs.compare(password,finduser.password);
         if(ismatch){
          return res.status(200).send(finduser);
         }else{
-          res.status(200).json({message:"Invalid credentials"})
+          res.status(401).json({message:"Invalid credentials"})
         }
       }
     } catch (error) {

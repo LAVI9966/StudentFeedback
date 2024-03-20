@@ -16,4 +16,4 @@ const Facultyrating = mongoose.Schema({
   ]
 })
 
-export const FacultyRatings =mongoose.model('Facultyrating',Facultyrating);
+export const FacultyRatings =mongoose.model('Facultyrating',Facultyrating); 

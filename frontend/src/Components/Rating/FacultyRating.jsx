@@ -3,7 +3,7 @@ import Box from "@mui/material/Box";
 import Rating from "@mui/material/Rating";
 import Typography from "@mui/material/Typography";
 
-const FacultyRating = ({ id, handleratings }) => {
+const FacultyRating = ({ id, handleratings, content }) => {
   const [value, setValue] = useState(0);
 
   return (
@@ -12,7 +12,8 @@ const FacultyRating = ({ id, handleratings }) => {
         "& > legend": { mt: 2 },
       }}
     >
-      <Typography component="legend">Controlled</Typography>
+      <Typography component="legend">{content.heading}</Typography>
+      <p>{content.description}</p>
       <Rating
         name="simple-controlled"
         value={value}
