@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import FacultyfeedbackCard from "./FacultyFeedbackCard";
+import RatingScatterChart from "./RatingScatterChart";
 
 const Facultyfeedback = () => {
-  const [data, setdata] = useState(null);
+  const [data, setdata] = useState([]);
   const [subjects, setsubjects] = useState([]);
 
   useEffect(() => {
@@ -61,15 +62,15 @@ const Facultyfeedback = () => {
       `The course name is ${item.name} and the final rating is ${rating}`
     );
   });
-  console.log(finalratings);
+  console.log("www ", data);
   return (
     <>
-      {finalratings.map((item) => {
+      {finalratings.map((item, i) => {
         return (
           <FacultyfeedbackCard
             name={item.name}
             rating={item.calcurat}
-            result={result}
+            result={result[i]}
           ></FacultyfeedbackCard>
         );
       })}

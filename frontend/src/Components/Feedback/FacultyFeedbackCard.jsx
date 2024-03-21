@@ -1,5 +1,5 @@
 import React from "react";
-// import DisplayChart from "./DisplayChart";
+import DisplayChart from "./DisplayChart";
 
 const CourseFeedbackCard = ({ name, rating, result }) => {
   return (
@@ -7,7 +7,7 @@ const CourseFeedbackCard = ({ name, rating, result }) => {
       <div class="card mb-3">
         <div class="row g-0">
           <div class="col-md-4">
-            {/* <DisplayChart data={result}></DisplayChart> */}
+            <DisplayChart ratings={result}></DisplayChart>
           </div>
           <div class="col-md-8">
             <div class="card-body">
@@ -15,10 +15,7 @@ const CourseFeedbackCard = ({ name, rating, result }) => {
               <p class="card-text">
                 The OverAll Rating For this Faculty is {rating}
               </p>
-              <p class="card-text">
-                Last updated 3 mins ago :{" "}
-                <button className="btn btn-primary">View </button>
-              </p>
+
               <p class="card-text">
                 Course theached by this faculty :{" "}
                 <button className="btn btn-primary">View Faculty</button>

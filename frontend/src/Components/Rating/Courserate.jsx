@@ -34,7 +34,7 @@ const Courserate = () => {
         cdata,
       });
       console.log(response.data);
-      // window.location.reload();
+      window.location.reload();
       setcourseratingarr(intialvalue);
     } catch (error) {
       console.log(error);

@@ -33,7 +33,7 @@ const Facultyrate = () => {
         fdata,
       });
       console.log(response.data);
-      // window.location.reload();
+      window.location.reload();
       setfacultyratingarr(intialvalue);
     } catch (error) {
       console.log(error);

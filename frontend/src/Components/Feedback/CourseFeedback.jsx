@@ -61,15 +61,16 @@ const CourseFeedback = () => {
       `The course name is ${item.name} and the final rating is ${rating}`
     );
   });
-  console.log(finalratings);
+  console.log("final ", finalratings);
+  console.log("result ", result);
   return (
     <>
-      {finalratings.map((item) => {
+      {finalratings.map((item, i) => {
         return (
           <CourseFeedbackCard
             name={item.name}
             rating={item.calcurat}
-            result={result}
+            result={result[i]}
           ></CourseFeedbackCard>
         );
       })}
