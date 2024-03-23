@@ -4,16 +4,15 @@ const Facultyrating = mongoose.Schema({
     type:String,
     required:true
   },
-  empid:{
-    type:String,
-    required:true
+  rating:{ 
+    type: Array, 
+    required: true 
   },
-  rating:[
-  {
-    userId: { type: mongoose.Schema.Types.ObjectId },
-    rating: { type: Number, required: true },
-  }
-  ]
+  userId: { 
+    type: String,
+    required:true 
+  },
+
 })
 
 export const FacultyRatings =mongoose.model('Facultyrating',Facultyrating); 

@@ -1,13 +1,16 @@
 import React, { useState } from "react";
 import axios from "axios";
 import Facultydetail from "./Facultydetail";
+import { useParams } from "react-router-dom";
 
 const MangageFaculty = () => {
+  const { cd } = useParams();
+  const data = JSON.parse(cd);
+  console.log("llllllllllllllll", data);
+
   const [facultydata, setfacultydata] = useState({
-    username: "",
     fullname: "",
-    fid: "",
-    department: "",
+    courseid: data.cid,
     email: "",
     password: "",
   });
@@ -23,6 +26,7 @@ const MangageFaculty = () => {
           },
         }
       );
+      console.log("added");
     } catch (error) {
       console.log(error);
     }
@@ -40,13 +44,6 @@ const MangageFaculty = () => {
       <h1>ye page data store kar raha he</h1>
       <h1>faculty add</h1>
       <form onSubmit={handlesubmit}>
-        <label>Username</label>
-        <input
-          type="text"
-          onChange={handleformdata}
-          name="username"
-          value={facultydata.username}
-        />
         <label>Full Name</label>
         <input
           type="text"
@@ -54,20 +51,7 @@ const MangageFaculty = () => {
           name="fullname"
           value={facultydata.fullname}
         />
-        <label>Fid</label>
-        <input
-          type="text"
-          onChange={handleformdata}
-          name="fid"
-          value={facultydata.fid}
-        />
-        <label>Department</label>
-        <input
-          type="text"
-          onChange={handleformdata}
-          name="department"
-          value={facultydata.department}
-        />
+
         <label>email</label>
         <input
           type="text"
@@ -86,7 +70,7 @@ const MangageFaculty = () => {
           Add faculty
         </button>
       </form>
-      <Facultydetail fun={fun}></Facultydetail>
+      <Facultydetail data={data}></Facultydetail>
     </>
   );
 };

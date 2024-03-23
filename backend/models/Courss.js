@@ -7,6 +7,10 @@ const courses = new mongoose.Schema({
   coursecode:{
     type:String,
     required:true
+  },
+  semester:{
+    type:Number,
+    required:true
   }
 })
 export const Courss = new mongoose.model('Course',courses);

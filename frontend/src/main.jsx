@@ -17,10 +17,17 @@ import Courserate from "./Components/Rating/Courserate.jsx";
 import Facultyrate from "./Components/Rating/Facultyrate.jsx";
 import Addcourse from "./Components/Admin/Addcourse.jsx";
 import FacultyHome from "./Components/Faculty/FacultyHome.jsx";
+import Coursesad from "./Components/Admin/Coursesad.jsx";
+import { ProotectedRoutes } from "./App.jsx";
+import UpdateSem from "./Components/Admin/UpdateSem.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
     element: <App></App>,
+  },
+  {
+    path: "/updatesem/:datatomanage",
+    element: <UpdateSem></UpdateSem>,
   },
   {
     path: "/login",
@@ -35,7 +42,7 @@ const router = createBrowserRouter([
     element: <Courselist></Courselist>,
   },
   {
-    path: "/listfaculty",
+    path: "/listfaculty/:cd",
     element: <ListFaculty></ListFaculty>,
   },
   {
@@ -51,7 +58,7 @@ const router = createBrowserRouter([
     element: <AdminHome></AdminHome>,
   },
   {
-    path: "/managefaculty",
+    path: "/addfaculty/:cd",
     element: <MangageFaculty></MangageFaculty>,
   },
   {
@@ -65,6 +72,10 @@ const router = createBrowserRouter([
   {
     path: "/feedbacks/facultyfeedback",
     element: <Facultyfeedback></Facultyfeedback>,
+  },
+  {
+    path: "/courses",
+    element: <Coursesad></Coursesad>,
   },
   {
     path: "/addcourse",

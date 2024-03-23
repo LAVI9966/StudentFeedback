@@ -69,5 +69,25 @@ router.post('/login',async (req,res)=>{
     }
 })
 
+router.put('/updatesem',async(req,res)=>{
+  const updatedata = req.body;
+  console.log(updatedata)
+  const _id = updatedata.datatomanag._id;
+  const semester = updatedata.data.sem;
+  const update = {semester:semester}
+  const user = await User.findByIdAndUpdate(_id,update,{ new: true });
+  console.log(user)
+  res.send(user)
+  // try {
+  //   const datatomanage = req.params.datatomanage;
 
+  //   const updatedocument = await User.findByIdAndUpdate({id:datatomanage._id,updatedata});
+  //   res.send(updatedocument)
+
+  // } catch (error) {
+  //   console.log(error);
+  //   res.status(500).send("INternal server Error")
+    
+  // }
+})
 export default router;

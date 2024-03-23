@@ -1,7 +1,11 @@
 import React from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const Navbar = () => {
+  const location = useLocation();
+  const datatomanage = location.state?.datatomanage;
+
+  console.log("nav se  ", datatomanage);
   return (
     <>
       <header class="p-3 text-bg-dark bg-black">
@@ -29,18 +33,11 @@ const Navbar = () => {
                 </Link>
               </li>
               <li>
-                <a href="#" class="nav-link px-2 text-white">
-                  Features
-                </a>
-              </li>
-              <li>
-                <a href="#" class="nav-link px-2 text-white">
-                  Pricing
-                </a>
-              </li>
-              <li>
-                <a href="#" class="nav-link px-2 text-white">
-                  FAQs
+                <a
+                  href={`/updatesem/${JSON.stringify(datatomanage)}`}
+                  class="nav-link px-2 text-white"
+                >
+                  UpdateSem
                 </a>
               </li>
               <li>

@@ -9,21 +9,23 @@ const indev = {
   background: "red",
 };
 
-const Facultydetail = ({ fun }) => {
+const Facultydetail = ({ data }) => {
   const [displaydata, setdisplaydata] = useState([]);
 
   useEffect(() => {
     fetch();
   }, []);
   const fetch = async () => {
-    const response = await axios.get("http://localhost:8080/fetchfaculty");
+    const response = await axios.get(
+      `http://localhost:8080/fetchfaculty/${data.cid}`
+    );
     console.log(response);
     // const to_display = JSON.stringify(response);
-    const data = await response.data;
-    setdisplaydata(data);
+    const data2 = await response.data;
+    setdisplaydata(data2);
     console.log("fetch call hua");
   };
-  fun(fetch);
+
   const handledelete = async (id) => {
     const delreponse = await axios.delete(
       `http://localhost:8080/deletefaculty/${id}`

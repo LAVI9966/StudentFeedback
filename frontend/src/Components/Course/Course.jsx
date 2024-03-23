@@ -1,10 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-const Course = ({ name, code }) => {
+const Course = ({ name, code, C_id, datatomanage }) => {
   const cd = {
     name,
     code,
+    C_id,
+    datatomanage,
   };
   return (
     <>
@@ -18,7 +20,7 @@ const Course = ({ name, code }) => {
         <Link to={`/courserate/${JSON.stringify(cd)}`}>
           <button className="btn btn-primary">Rate Course</button>
         </Link>
-        <Link to="/listfaculty">
+        <Link to={`/listfaculty/${JSON.stringify(cd)}`}>
           <button className="btn btn-primary">View Faculty</button>
         </Link>
       </div>

@@ -6,6 +6,7 @@ import { useParams } from "react-router-dom";
 const Facultyrate = () => {
   const { fc } = useParams();
   const fdata = JSON.parse(fc);
+  console.log(fdata);
   const intialvalue = [
     { id: 1, rating: 0 },
     { id: 2, rating: 0 },

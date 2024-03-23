@@ -6,7 +6,6 @@ import axios from "axios";
 const Courserate = () => {
   const { cd } = useParams();
   const cdata = JSON.parse(cd);
-
   const intialvalue = [
     { id: 1, rating: 0 },
     { id: 2, rating: 0 },

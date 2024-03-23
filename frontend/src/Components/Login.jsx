@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
 import Footer from "./Footer";
 import axios from "axios";
@@ -25,12 +25,16 @@ const Login = () => {
           "http://localhost:8080/login",
           formData
         );
+        const datatomanage = {
+          _id: response.data._id,
+          sem: response.data.semester,
+        };
         const user = response.data.usertype;
         if (user === "admin") {
           seterrorMsg("Invalid Credentials");
         }
         if (user === "student") {
-          navigation("/courselist");
+          navigation("/courselist", { state: { datatomanage } });
         }
         console.log("Responce", response);
       } catch (error) {

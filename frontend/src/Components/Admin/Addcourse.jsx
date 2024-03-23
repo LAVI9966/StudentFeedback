@@ -6,6 +6,7 @@ const Addcourse = () => {
   const [coursedata, setcoursedata] = useState({
     coursename: "",
     coursecode: "",
+    semester: "",
   });
   const handleformdata = async (e) => {
     e.preventDefault();
@@ -36,6 +37,12 @@ const Addcourse = () => {
         <input
           name="coursecode"
           value={coursedata.coursecode}
+          onChange={handledata}
+        ></input>
+        <label htmlFor="">Semester</label>
+        <input
+          name="semester"
+          value={coursedata.semester}
           onChange={handledata}
         ></input>
         <button type="submit">Add Course</button>

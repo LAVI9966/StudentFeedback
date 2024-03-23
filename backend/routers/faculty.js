@@ -36,13 +36,39 @@ router.get('/fetchfaculty',async(req,res)=>{
 router.post('/facultyrate',async(req,res)=>{
   const { facultyratingarr,
     fdata} = req.body; 
-   const { empid ,name} = fdata;
+   const { data ,fac} = fdata;
     try {
+      
+      const finduser = await FacultyRatings.findOne({
+        userId:data.datatomanage._id,
+        fullname:fac.fullname
+      });
+
+
       console.log(facultyratingarr)
-      const ratings = new FacultyRatings({empid,name,rating:facultyratingarr})
-      await ratings.save();
-      res.status(200).send('Rating submitted'); 
-      console.log("submitted")       
+      console.log("find user " ,data.datatomanage._id);
+      if(finduser===null){
+        const ratings = new FacultyRatings({name:fac.fullname,rating:facultyratingarr,userId:data.datatomanage._id})
+        await ratings.save();
+        console.log("submitted")       
+        console.log(ratings )
+        res.status(200).send('Rating submitted'); 
+        return
+      }
+      console.log("find user " ,finduser)
+      console.log("find user " ,finduser.userID);
+      if((finduser.userId === data.datatomanage._id)&&(finduser.name===fac.fullname)){
+          // const ratings = new FacultyRatings({name:fac.fullname,rating:facultyratingarr,userId:data.datatomanage._id})
+          // await ratings.save();
+          console.log("Already rated")       
+          res.status(200).send({message:'Already rated'}); 
+        }else{
+          console.log("rated first time")  
+          const ratings = new FacultyRatings({name:fac.fullname,rating:facultyratingarr,userId:data.datatomanage._id})
+          await ratings.save();
+          res.status(200).send('Rating submitted'); 
+          console.log("submitted")  
+        }
       } catch (error) {
       res.status(500).send('Error occured');
       console.log(error)
@@ -60,12 +86,12 @@ router.get('/fetchfacultyratings',async(req,res)=>{
 })
 
 router.post('/addfaculty',async(req,res)=>{
-  const {username,fullname,fid,department,email,password} = req.body;
-  if(!username||!fullname||!fid||!department||!email||!password){
+  const {fullname,courseid,email,password} = req.body;
+  if(!fullname||!courseid||!email||!password){
     return res.status(422).send({error:'Provide all details'})
   }
   try {
-    const faculty =new Faculty({username,fullname,fid,department,email,password});
+    const faculty =new Faculty({fullname,courseid,email,password});
     const registerfaculty = await faculty.save();
     console.log("registered")
     if(registerfaculty){
@@ -79,8 +105,10 @@ router.post('/addfaculty',async(req,res)=>{
   }
 })
 
-router.get('/fetchfaculty',async(req,res)=>{
-  const fetchFaculty =await Faculty.find();
+router.get('/fetchfaculty/:cid',async(req,res)=>{
+  const cid = req.params.cid;
+
+  const fetchFaculty =await Faculty.find({courseid:cid});
   if(fetchFaculty){
     return res.status(200).send(fetchFaculty);
   }else{
